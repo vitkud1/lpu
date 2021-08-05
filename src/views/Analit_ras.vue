@@ -192,7 +192,7 @@ export default {
     // var GeoJSON = require("geojson");
     // const response = GeoJSON.parse("../assets/admin_level_3");
     const response = await fetch(
-      "https://raw.githubusercontent.com/vitkud1/lpu/master/src/assets/admin_level_2.geojson"
+      "https://raw.githubusercontent.com/vitkud1/lpu/master/src/assets/admin_level_4.geojson"
     );
     this.geojson = await response.json();
     // this.geojson = Object.freeze(response.json());
@@ -204,7 +204,7 @@ export default {
     //   }
     // }
     // await cikl(this.geojson);
-    console.log(response);
+    console.log(this.geojson);
   },
 };
 </script>
