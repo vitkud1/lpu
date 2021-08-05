@@ -54,6 +54,7 @@ export default {
   data() {
     return {
       geojson: null,
+      geojsonsort: null,
       polygon: {
         latlngs: [
           [57.7, 55.24],
@@ -191,9 +192,19 @@ export default {
     // var GeoJSON = require("geojson");
     // const response = GeoJSON.parse("../assets/admin_level_3");
     const response = await fetch(
-      "https://rawgit.com/gregoiredavid/france-geojson/master/regions/pays-de-la-loire/communes-pays-de-la-loire.geojson"
+      "https://raw.githubusercontent.com/vitkud1/lpu/master/src/assets/admin_level_2.geojson"
     );
     this.geojson = await response.json();
+    // this.geojson = Object.freeze(response.json());
+    // async function cikl(geojson) {
+    //   for (var i = 0; i < geojson.features.length; i++) {
+    //     if (geojson.features[i].name != "Селенгинский район") {
+    //       geojson.features.splice(i, 1);
+    //     }
+    //   }
+    // }
+    // await cikl(this.geojson);
+    console.log(response);
   },
 };
 </script>
