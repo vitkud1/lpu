@@ -8,6 +8,8 @@
       Карта оснащенности регионов с градацией по цвету взависимости от
       оснащенности
     </h1>
+    <input v-model="regionInput" />
+    <b-button variant="success" @click="getGeo">Тыкни</b-button>
     <div
       style="
         height: vh;
@@ -27,8 +29,7 @@
           "
           :minZoom="4"
           :zoom="zoom"
-          :maxBounds="maxBounds"
-          :center="[58.01339803907709, 56.24605847056341]"
+          :center="[61.573803, 95.574909]"
         >
           <l-tile-layer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -36,11 +37,8 @@
             name="OpenStreetMap"
           ></l-tile-layer>
           <!-- данные -->
-          <l-polygon
-            :lat-lngs="polygon.latlngs"
-            :fillColor="polygon.fillColor"
-          ></l-polygon>
           <l-geo-json :geojson="geojson"></l-geo-json>
+          <l-geo-json :geojson="geoCities"></l-geo-json>
         </l-map>
       </div>
     </div>
@@ -48,13 +46,53 @@
 </template>
 
 <script>
-import { LMap, LTileLayer, LPolygon, LGeoJson } from "vue2-leaflet";
+import { LMap, LTileLayer, LGeoJson } from "vue2-leaflet";
+import axios from "axios";
 // import Regions from '../assets/admin_level_2.geojson'
 export default {
   data() {
     return {
-      geojson: null,
-      geojsonsort: null,
+      regionInput: null,
+      geoCities: {
+        type: "FeatureCollection",
+        generator: "overpass-ide",
+        copyright:
+          "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+        timestamp: "2021-08-09T12:34:57Z",
+        features: [
+          {
+            type: "",
+            properties: {},
+            geometry: {
+              type: "",
+              coordinates: [],
+            },
+            id: "",
+          },
+        ],
+      },
+      geojson: {
+        type: "FeatureCollection",
+        geocoding: {
+          creation_date: "2016-01-09",
+          generator: {
+            author: {
+              name: "Mapzen",
+            },
+            package: "fences-builder",
+            version: "0.1.2",
+          },
+          license: "ODbL (see http://www.openstreetmap.org/copyright)",
+        },
+        features: {
+          geomerty: {},
+          properties: {},
+          type: "",
+          osm_type: "",
+          name: "",
+          id: null,
+        },
+      },
       polygon: {
         latlngs: [
           [57.7, 55.24],
@@ -70,7 +108,7 @@ export default {
         //north east
         [55.992742, 51.241723],
       ],
-      zoom: 10,
+      zoom: 3,
       fields_lpu: [
         {
           key: "name",
@@ -182,29 +220,36 @@ export default {
       ],
     };
   },
+  methods: {
+    async getGeo() {
+      await axios({
+        url: "http://localhost:3000/api/geoj",
+        method: "GET",
+        params: {
+          region: this.regionInput,
+        },
+      }).then((data) => {
+        this.geojson.features = data.data;
+      });
+    },
+    async getGeoCities() {
+      await axios({
+        url: "http://localhost:3000/api/geoj/cities",
+        method: "GET",
+        params: {
+          district: this.regionInput,
+        },
+      }).then((data) => {
+        this.geoCities.features = data.data;
+      });
+    },
+  },
   components: {
     LMap,
     LTileLayer,
-    LPolygon,
     LGeoJson,
   },
-  async created() {
-    // var GeoJSON = require("geojson");
-    // const response = GeoJSON.parse("../assets/admin_level_3");
-    const response = await fetch(
-      "https://raw.githubusercontent.com/vitkud1/lpu/master/src/assets/admin_level_4.geojson"
-    );
-    this.geojson = await response.json();
-    // this.geojson = Object.freeze(response.json());
-    // async function cikl(geojson) {
-    //   for (var i = 0; i < geojson.features.length; i++) {
-    //     if (geojson.features[i].name != "Селенгинский район") {
-    //       geojson.features.splice(i, 1);
-    //     }
-    //   }
-    // }
-    // await cikl(this.geojson);
-    console.log(this.geojson);
-  },
+  async mounted() {},
+  async created() {},
 };
 </script>

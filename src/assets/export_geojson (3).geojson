@@ -1,0 +1,397 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-ide",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2021-08-09T14:54:28Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/820233299",
+        "addr:country": "RU",
+        "addr:district": "Сивинский муниципальный округ",
+        "addr:postcode": "617240",
+        "addr:region": "Пермский край",
+        "name": "Сива",
+        "name:ru": "Сива",
+        "official_status": "ru:село",
+        "okato:user": "57248834001",
+        "old_name": "село Сивинское",
+        "place": "town",
+        "population": "4659",
+        "population:date": "2010",
+        "wikidata": "Q2949626",
+        "wikipedia": "ru:Сива (Пермский край)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          54.380031,
+          58.3813868
+        ]
+      },
+      "id": "node/820233299"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/272601866",
+        "addr:country": "RU",
+		"addr:district": "Кунгурский муниципальный округ",
+        "addr:region": "Пермский край",
+        "int_name": "Kungur",
+        "name": "Кунгур",
+        "name:de": "Kungur",
+        "name:en": "Kungur",
+        "name:ja": "クングル",
+        "name:ru": "Кунгур",
+        "official_status": "ru:город",
+        "oktmo:user": "57722000001",
+        "place": "town",
+        "population": "64898",
+        "population:date": "2020-01-01",
+        "wikidata": "Q155974",
+        "wikipedia": "ru:Кунгур"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          56.944328,
+          57.428844
+        ]
+      },
+      "id": "node/272601866"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/331180517",
+        "addr:country": "RU",
+        "addr:district": "Бардымский муниципальный округ",
+        "addr:postcode": "618150",
+        "addr:region": "Пермский край",
+        "name": "Барда",
+        "name:de": "Barda",
+        "name:en": "Barda",
+        "name:ja": "バルダ",
+        "name:ru": "Барда",
+        "official_status": "ru:село",
+        "okato:user": "57204807001",
+        "place": "town",
+        "population": "8826",
+        "population:date": "2010",
+        "wikidata": "Q2391762",
+        "wikipedia": "ru:Барда (Пермский край)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.586967,
+          56.930187
+        ]
+      },
+      "id": "node/331180517"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/540329860",
+        "addr:country": "RU",
+        "addr:district": "Берёзовский муниципальный округ",
+        "addr:postcode": "617570",
+        "addr:region": "Пермский край",
+        "name": "Берёзовка",
+        "name:de": "Berjosowka",
+        "name:en": "Berezovka",
+        "name:ja": "ベリョーゾフカ",
+        "name:ru": "Берёзовка",
+        "official_status": "ru:село",
+        "okato:user": "57206804001",
+        "place": "village",
+        "population": "6904",
+        "population:date": "2010",
+        "wikidata": "Q2950056",
+        "wikipedia": "ru:Берёзовка (Берёзовский район, Пермский край)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          57.3133181,
+          57.6020085
+        ]
+      },
+      "id": "node/540329860"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/283530707",
+        "addr:country": "RU",
+        "addr:district": "Большесосновский район",
+        "addr:postcode": "617080",
+        "addr:region": "Пермский край",
+        "addr:subdistrict": "Большесосновское сельское поселение",
+        "contact:website": "http://bsosnova.ru",
+        "int_name": "Bolshaya Sosnova",
+        "name": "Большая Соснова",
+        "name:en": "Bolshaya Sosnova",
+        "name:ja": "ボリシャヤ・ソスノフカ",
+        "name:ru": "Большая Соснова",
+        "official_status": "ru:село",
+        "okato:user": "57208807001",
+        "place": "village",
+        "population": "4432",
+        "population:date": "2010",
+        "wikidata": "Q4091691",
+        "wikipedia": "ru:Большая Соснова"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          54.602867,
+          57.671268
+        ]
+      },
+      "id": "node/283530707"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/272616339",
+        "addr:country": "RU",
+        "addr:district": "Верещагинский городской округ",
+        "addr:postcode": "617120;617123",
+        "addr:region": "Пермский край",
+        "name": "Верещагино",
+        "name:de": "Wereschtschagino",
+        "name:en": "Vereshchagino",
+        "name:ja": "ヴェレシチャギノ",
+        "name:lt": "Vereščiaginas",
+        "name:ru": "Верещагино",
+        "official_status": "ru:город",
+        "place": "town",
+        "population": "21292",
+        "population:date": "2020-01-01",
+        "wikidata": "Q132977",
+        "wikipedia": "ru:Верещагино"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          54.6674847,
+          58.0721045
+        ]
+      },
+      "id": "node/272616339"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/597117358",
+        "addr:country": "RU",
+        "addr:district": "Гайнский муниципальный округ",
+        "addr:postcode": "619650",
+        "addr:region": "Пермский край",
+        "name": "Гайны",
+        "name:en": "Gayny",
+        "name:ja": "ガヌィ",
+        "name:ru": "Гайны",
+        "official_status": "ru:посёлок",
+        "place": "town",
+        "population": "4050",
+        "population:date": "2010",
+        "wikidata": "Q2487085",
+        "wikipedia": "ru:Гайны"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          54.327332,
+          60.304131
+        ]
+      },
+      "id": "node/597117358"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/288115144",
+        "addr:country": "RU",
+        "addr:district": "Горнозаводский городской округ",
+        "addr:region": "Пермский край",
+        "name": "Горнозаводск",
+        "name:de": "Gornosawodsk",
+        "name:en": "Gornozavodsk",
+        "name:ja": "ゴルノザヴォーツク",
+        "name:ru": "Горнозаводск",
+        "official_status": "ru:город",
+        "oktmo:user": "57714000001",
+        "old_name": "Даниловка;Новопашийск (1950—1965)",
+        "place": "town",
+        "population": "11176",
+        "population:date": "2020-01-01",
+        "wikidata": "Q134483",
+        "wikipedia": "ru:Горнозаводск (Пермский край)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          58.325058,
+          58.374001
+        ]
+      },
+      "id": "node/288115144"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/524691473",
+        "addr:country": "RU",
+        "addr:district": "Еловский муниципальный округ",
+        "addr:postcode": "618170",
+        "addr:region": "Пермский край",
+        "name": "Елово",
+        "name:en": "Elovo",
+        "name:ja": "エロヴォ",
+        "name:ru": "Елово",
+        "official_status": "ru:село",
+        "place": "town",
+        "population": "5334",
+        "population:date": "2010",
+        "wikidata": "Q2949656",
+        "wikipedia": "ru:Елово (Еловский район)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          54.9157617,
+          57.0503872
+        ]
+      },
+      "id": "node/524691473"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/560087619",
+        "addr:country": "RU",
+        "addr:district": "Ильинский городской округ",
+        "addr:region": "Пермский край",
+        "alt_name": "Ильинское",
+        "alt_name:en": "Il'inskoye",
+        "contact:website": "http://ilinsk.ru",
+        "name": "Ильинский",
+        "name:de": "Iljinski",
+        "name:en": "Il'inskiy",
+        "name:ja": "イリインスキー",
+        "name:ru": "Ильинский",
+        "official_status": "ru:посёлок",
+        "oktmo:user": "57759000101",
+        "place": "town",
+        "population": "6288",
+        "postal_code": "617020",
+        "wikidata": "Q2949953",
+        "wikipedia": "ru:Ильинский (Пермский край)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.6992711,
+          58.5703756
+        ]
+      },
+      "id": "node/560087619"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/288092970",
+        "addr:country": "RU",
+        "addr:district": "Карагайский муниципальный округ",
+        "addr:postcode": "617210",
+        "addr:region": "Пермский край",
+        "name": "Карагай",
+        "name:en": "Karagay",
+        "name:ja": "カラガイ",
+        "name:ru": "Карагай",
+        "official_status": "ru:село",
+        "place": "town",
+        "population": "6682",
+        "population:date": "2010",
+        "wikidata": "Q4213664",
+        "wikipedia": "ru:Карагай (Пермский край)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          54.927208,
+          58.265579
+        ]
+      },
+      "id": "node/288092970"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/540335128",
+        "addr:country": "RU",
+        "addr:district": "Кишертский муниципальный округ",
+        "addr:postcode": "617600",
+        "addr:region": "Пермский край",
+        "name": "Усть-Кишерть",
+        "name:en": "Ust-Kishert",
+        "name:ja": "ウスチ=キシェルチ",
+        "name:ru": "Усть-Кишерть",
+        "official_status": "ru:село",
+        "place": "town",
+        "population": "4617",
+        "population:date": "2016",
+        "wikidata": "Q2949946",
+        "wikipedia": "ru:Усть-Кишерть (Пермский край)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          57.2471775,
+          57.3599717
+        ]
+      },
+      "id": "node/540335128"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/335978731",
+        "addr:country": "RU",
+        "addr:district": "Косинский муниципальный округ",
+        "addr:postcode": "619430",
+        "addr:region": "Пермский край",
+        "name": "Коса",
+        "name:en": "Kosa",
+        "name:ja": "コサー",
+        "name:ru": "Коса",
+        "note": "town - райцентр",
+        "official_status": "ru:село",
+        "place": "town",
+        "population": "2383",
+        "population:date": "2010",
+        "source": "vmap0",
+        "wikidata": "Q4902227",
+        "wikipedia": "ru:Коса (Косинский район)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          54.989826,
+          59.944386
+        ]
+      },
+      "id": "node/335978731"
+    }
+  ]
+}
+
+
+
+
+
