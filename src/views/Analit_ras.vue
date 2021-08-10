@@ -9,7 +9,7 @@
       оснащенности
     </h1>
     <input v-model="regionInput" />
-    <b-button variant="success" @click="getGeo">Тыкни</b-button>
+    <b-button variant="success" @click="clickButton">Тыкни</b-button>
     <div
       style="
         height: vh;
@@ -21,7 +21,7 @@
     >
       <div style="height: 90vh; width: 100%">
         <l-map
-          id="map"
+          ref="map"
           style="
             leaflet-control-zoom {
               position: 'bottomleft';
@@ -38,7 +38,7 @@
           ></l-tile-layer>
           <!-- данные -->
           <l-geo-json :geojson="geojson"></l-geo-json>
-          <l-geo-json :geojson="geoCities"></l-geo-json>
+          <!-- <l-geo-json :geojson="geoCities"></l-geo-json> -->
         </l-map>
       </div>
     </div>
@@ -47,6 +47,7 @@
 
 <script>
 import { LMap, LTileLayer, LGeoJson } from "vue2-leaflet";
+import L from "leaflet";
 import axios from "axios";
 // import Regions from '../assets/admin_level_2.geojson'
 export default {
@@ -63,11 +64,8 @@ export default {
           {
             type: "",
             properties: {},
-            geometry: {
-              type: "",
-              coordinates: [],
-            },
-            id: "",
+            geometry: {},
+            id: null,
           },
         ],
       },
@@ -221,6 +219,10 @@ export default {
     };
   },
   methods: {
+    clickButton() {
+      this.getGeo();
+      this.getGeoCities();
+    },
     async getGeo() {
       await axios({
         url: "http://localhost:3000/api/geoj",
@@ -237,10 +239,13 @@ export default {
         url: "http://localhost:3000/api/geoj/cities",
         method: "GET",
         params: {
-          district: this.regionInput,
+          region: this.regionInput,
         },
       }).then((data) => {
         this.geoCities.features = data.data;
+        console.log(this.geoCities);
+        console.log(this.$refs.map.mapObject);
+        L.geoJSON(this.geoCities).addTo(this.$refs.map.mapObject);
       });
     },
   },
