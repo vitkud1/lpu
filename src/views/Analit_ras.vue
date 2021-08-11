@@ -37,8 +37,14 @@
             name="OpenStreetMap"
           ></l-tile-layer>
           <!-- данные -->
-          <l-geo-json :geojson="geojson"></l-geo-json>
-          <!-- <l-geo-json :geojson="geoCities"></l-geo-json> -->
+          <!-- <l-geo-json :geojson="geojson" :options="makeColor"></l-geo-json> -->
+          <l-geo-json :geojson="geoCities">
+            <l-icon
+              :icon-size="[25, 25]"
+              :popup-anchor="[0, -10]"
+              icon-url="lpu\dist\img\icons\redIcon.png"
+            />
+          </l-geo-json>
         </l-map>
       </div>
     </div>
@@ -46,8 +52,10 @@
 </template>
 
 <script>
-import { LMap, LTileLayer, LGeoJson } from "vue2-leaflet";
+import { LMap, LTileLayer, LGeoJson, LIcon } from "vue2-leaflet";
 import L from "leaflet";
+delete L.Icon.Default.prototype._getIconUrl;
+// import { icon } from "leaflet";
 import axios from "axios";
 // import Regions from '../assets/admin_level_2.geojson'
 export default {
@@ -60,17 +68,18 @@ export default {
         copyright:
           "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
         timestamp: "2021-08-09T12:34:57Z",
-        features: [
-          {
-            type: "",
-            properties: {},
-            geometry: {},
-            id: null,
+        features: {
+          type: "",
+          properties: {},
+          geometry: {
+            type: "Point",
           },
-        ],
+          id: null,
+        },
       },
       geojson: {
         type: "FeatureCollection",
+        // fillColor: "",
         geocoding: {
           creation_date: "2016-01-09",
           generator: {
@@ -82,15 +91,19 @@ export default {
           },
           license: "ODbL (see http://www.openstreetmap.org/copyright)",
         },
-        features: {
-          geomerty: {},
-          properties: {},
-          type: "",
-          osm_type: "",
-          name: "",
-          id: null,
-        },
+        features: [
+          {
+            geomerty: {},
+            properties: {},
+            type: "",
+            osm_type: "",
+            name: "",
+            id: null,
+          },
+        ],
       },
+      iconSize: 64,
+
       polygon: {
         latlngs: [
           [57.7, 55.24],
@@ -222,6 +235,7 @@ export default {
     clickButton() {
       this.getGeo();
       this.getGeoCities();
+      this.getFillColor();
     },
     async getGeo() {
       await axios({
@@ -232,8 +246,31 @@ export default {
         },
       }).then((data) => {
         this.geojson.features = data.data;
+        L.geoJSON(this.geojson, {
+          style: function (features) {
+            switch (features.name) {
+              case "Осинский район":
+                return { fillColor: "#ff0000" };
+            }
+          },
+        }).addTo(this.$refs.map.mapObject);
       });
     },
+    async getFillColor() {
+      await axios({
+        url: "http://localhost:3000/api/geoj/ranges",
+        method: "GET",
+        params: {
+          region: this.regionInput,
+        },
+      }).then((data) => {
+        console.log(data);
+      });
+    },
+    async getColor() {
+      return "kek";
+    },
+
     async getGeoCities() {
       await axios({
         url: "http://localhost:3000/api/geoj/cities",
@@ -243,18 +280,59 @@ export default {
         },
       }).then((data) => {
         this.geoCities.features = data.data;
-        console.log(this.geoCities);
-        console.log(this.$refs.map.mapObject);
-        L.geoJSON(this.geoCities).addTo(this.$refs.map.mapObject);
+        // if (data.data.properties.name == "Сива") {
+        //   this.options.fillColor = this.makeColor();
+        // }
+
+        // L.geoJSON(this.geoCities, { icon: greenIcon }).addTo(
+        //   this.$refs.map.mapObject
+        // );
       });
+    },
+  },
+  computed: {
+    // makeColor() {
+    //   var fillColor = "#0aff00";
+    //   this.$nextTick(() => {
+
+    //     console.log(this.$refs);
+    //   });
+    // var obj2 = this.geojson.features;
+    // var obj = obj2.find((district) => district.name === "Осинский район");
+    // if (obj != null) {
+    //   return { fillColor: "#ff0000" };
+    // }
+    // return { fillColor };
+    // },
+    // updateGeoJsonStyle (newStyle) {
+    // this.$nextTick(() => {
+    //   if (this.$refs.geoJson && this.$refs.geoJson.mapObject) {
+    //     this.$refs.geoJson.mapObject.eachLayer((layer) => {
+    //         layer.setStyle(newStyle);
+    //     });
+    //   }
+    // });
+    // },
+    dynamicSize() {
+      return [this.iconSize, this.iconSize * 1.15];
+    },
+    dynamicAnchor() {
+      return [this.iconSize / 2, this.iconSize * 1.15];
     },
   },
   components: {
     LMap,
     LTileLayer,
     LGeoJson,
+    LIcon,
   },
-  async mounted() {},
+  async mounted() {
+    L.Icon.Default.mergeOptions({
+      iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+      iconUrl: require("leaflet/dist/images/marker-icon.png"),
+      shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+    });
+  },
   async created() {},
 };
 </script>
