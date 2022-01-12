@@ -55,9 +55,8 @@
 import { LMap, LTileLayer, LGeoJson, LIcon } from "vue2-leaflet";
 import L from "leaflet";
 delete L.Icon.Default.prototype._getIconUrl;
-// import { icon } from "leaflet";
 import axios from "axios";
-// import Regions from '../assets/admin_level_2.geojson'
+// import collect from "collect.js";
 export default {
   data() {
     return {
@@ -235,7 +234,6 @@ export default {
     clickButton() {
       this.getGeo();
       this.getGeoCities();
-      this.getFillColor();
     },
     async getGeo() {
       await axios({
@@ -246,14 +244,7 @@ export default {
         },
       }).then((data) => {
         this.geojson.features = data.data;
-        L.geoJSON(this.geojson, {
-          style: function (features) {
-            switch (features.name) {
-              case "Осинский район":
-                return { fillColor: "#ff0000" };
-            }
-          },
-        }).addTo(this.$refs.map.mapObject);
+        this.getFillColor();
       });
     },
     async getFillColor() {
@@ -264,13 +255,61 @@ export default {
           region: this.regionInput,
         },
       }).then((data) => {
-        console.log(data);
+        function getColor(name, data) {
+          var current = data.find((data) => data.district === name);
+          if (current) {
+            var ranges = current.sub;
+            var min = ranges.reduce(function (res, obj) {
+              if (res.range == 0) {
+                return obj;
+              } else {
+                return obj.range < res.range ? obj : res;
+              }
+            });
+            console.log(min);
+            var d = min.range;
+          } else {
+            d = 1001;
+          }
+
+          return d > 1000
+            ? "#7d7d7d"
+            : d > 250
+            ? "#ff0000"
+            : d > 200
+            ? "#ff3c00"
+            : d > 150
+            ? "#ff7b00"
+            : d > 100
+            ? "#ffbf00"
+            : d > 50
+            ? "#eaff00"
+            : "#00ff2a";
+        }
+        function style(features) {
+          return {
+            fillColor: getColor(features.name, data.data),
+            weight: 2,
+            opacity: 1,
+            color: "white",
+            dashArray: "3",
+            fillOpacity: 0.7,
+          };
+        }
+        L.geoJSON(this.geojson, {
+          style: style,
+          // style: function (features) {
+          //   console.log(features);
+          //   console.log(data.data);
+          //   // тут должна быть логика покраски от расстояния
+          //   switch (features.name) {
+          //     case "Осинский район":
+          //       return { fillColor: "#ff0000" };
+          //   }
+          // },
+        }).addTo(this.$refs.map.mapObject);
       });
     },
-    async getColor() {
-      return "kek";
-    },
-
     async getGeoCities() {
       await axios({
         url: "http://localhost:3000/api/geoj/cities",
@@ -280,39 +319,10 @@ export default {
         },
       }).then((data) => {
         this.geoCities.features = data.data;
-        // if (data.data.properties.name == "Сива") {
-        //   this.options.fillColor = this.makeColor();
-        // }
-
-        // L.geoJSON(this.geoCities, { icon: greenIcon }).addTo(
-        //   this.$refs.map.mapObject
-        // );
       });
     },
   },
   computed: {
-    // makeColor() {
-    //   var fillColor = "#0aff00";
-    //   this.$nextTick(() => {
-
-    //     console.log(this.$refs);
-    //   });
-    // var obj2 = this.geojson.features;
-    // var obj = obj2.find((district) => district.name === "Осинский район");
-    // if (obj != null) {
-    //   return { fillColor: "#ff0000" };
-    // }
-    // return { fillColor };
-    // },
-    // updateGeoJsonStyle (newStyle) {
-    // this.$nextTick(() => {
-    //   if (this.$refs.geoJson && this.$refs.geoJson.mapObject) {
-    //     this.$refs.geoJson.mapObject.eachLayer((layer) => {
-    //         layer.setStyle(newStyle);
-    //     });
-    //   }
-    // });
-    // },
     dynamicSize() {
       return [this.iconSize, this.iconSize * 1.15];
     },
